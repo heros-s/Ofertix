@@ -1,6 +1,6 @@
 # AGENTS.md — Projeto Ofertix
 
-> Este arquivo é o contexto operacional para o agente de IA (Gemini) atuar no desenvolvimento do e-commerce Ofertix. Deve ser lido integralmente antes de qualquer geração de código.
+> Este arquivo é o contexto operacional para o agente de IA (OpenCode + Qwen) atuar no desenvolvimento do e-commerce Ofertix. Deve ser lido integralmente antes de qualquer geração de código.
 
 ---
 
@@ -25,7 +25,7 @@ Existe um grupo de vendedores independentes, cada um com estoque próprio e vari
 | Backend | NestJS (Node.js) + TypeScript | Definido pelo usuário. Arquitetura modular facilita separar módulos: auth, produtos, pedidos, pagamentos |
 | Banco de dados | PostgreSQL via **Supabase** | Gerenciado, sem DevOps de infra em 1 semana; Auth e Storage nativos |
 | Autenticação | **Supabase Auth** (email/senha + Google OAuth + verificação de e-mail) | Elimina a necessidade de construir fluxo de auth do zero no NestJS; o backend valida o JWT do Supabase |
-| Pagamentos / Split | **Mercado Pago — Marketplace (Split de Pagamentos)** | Split nativo por vendedor, documentação em PT-BR, checkout transparente e Checkout Pro disponíveis |
+| Pagamentos / Split | **Asaas — Split de Pagamentos** | Split nativo via API por `walletId` de subconta, documentação em PT-BR, suporta Pix/boleto/cartão |
 | Armazenamento de imagens | **Cloudinary** | Upload direto do frontend, transformação de imagem (thumbnails) sem esforço de backend |
 | Deploy Frontend | Vercel | Deploy automático via Git, zero config para Next.js |
 | Deploy Backend | Railway | Deploy automático via Git, Postgres/env vars simples (mesmo usando Supabase como DB principal) |
@@ -42,7 +42,7 @@ User (Supabase Auth)
  ├─ id, email, nome, tipo (CONSUMIDOR | VENDEDOR), avatar_url, criado_em
 
 Vendedor (extensão de User quando tipo = VENDEDOR)
- ├─ user_id (FK), nome_loja, cnpj/cpf, mp_account_id (conta Mercado Pago vinculada para split), status (ativo/pendente)
+ ├─ user_id (FK), nome_loja, cnpj/cpf, asaas_wallet_id (walletId da subconta Asaas do vendedor, usado no split), status (ativo/pendente)
 
 Produto
  ├─ id, vendedor_id (FK), nome, descricao, categoria_id (FK), preco, estoque, fotos[] (Cloudinary URLs), ativo, criado_em
@@ -80,14 +80,20 @@ Promocao
 1. Consumidor monta carrinho com produtos de N vendedores diferentes.
 2. No checkout, o sistema agrupa os itens por `vendedor_id` e calcula, para cada grupo: subtotal, comissão Ofertix (5%), valor líquido do vendedor.
 3. Frete é único, calculado sobre o pedido consolidado (não por vendedor) e definido no `Pedido` pai — a lógica de rateio do frete entre vendedores (se necessário para o split) deve ser documentada, mas não exibida ao consumidor.
-4. É criada uma preferência de pagamento no Mercado Pago usando a API de **Split de Pagamentos (Marketplace)**, com um `application_fee` correspondente aos 5% por vendedor e o valor líquido direcionado à conta Mercado Pago de cada vendedor (`collector_id`/`marketplace` conforme doc oficial).
-5. Após confirmação do pagamento (webhook do Mercado Pago), o sistema:
+4. O sistema cria **uma única cobrança no Asaas** (`POST /v3/payments`) em nome da conta Ofertix, contendo o array `split[]`. Cada item do array corresponde a um vendedor presente no carrinho, identificado pelo `walletId` (`asaas_wallet_id` armazenado em `Vendedor`), com o valor a repassar definido como `percentualValue` (percentual sobre o valor líquido da cobrança, já descontada a taxa do Asaas) ou `fixedValue`, conforme a regra de comissão adotada. A diferença não destinada a nenhum `walletId` no split fica automaticamente com a conta Ofertix (a comissão de 5%), então **não se envia a própria carteira da Ofertix no split**.
+5. Pré-requisito: todo vendedor deve ter uma **subconta Asaas criada via API** (`POST /v3/accounts`, fluxo de onboarding) antes de poder publicar produtos — sem `asaas_wallet_id` válido, o cadastro de produto deve ficar bloqueado.
+6. Após confirmação do pagamento (webhook do Asaas, evento `PAYMENT_RECEIVED` ou `PAYMENT_CONFIRMED`), o sistema:
    - Atualiza `Pedido.status_geral` para "pago"
-   - Cria/atualiza os `SubPedido` correspondentes com status "pago"
+   - Cria/atualiza os `SubPedido` correspondentes com status "pago", refletindo o status do split retornado pelo Asaas (`PENDING`, `AWAITING_CREDIT`, `DONE`, `REFUSED`, `CANCELLED`, `REFUNDED`)
    - Notifica cada vendedor sobre o(s) seu(s) sub-pedido(s)
-6. Cada vendedor só visualiza e gerencia seus próprios `SubPedido` (nunca o pedido completo de outro vendedor).
+7. Em caso de estorno total da cobrança, o Asaas estorna o split automaticamente; em estorno parcial, o split **não** é revertido automaticamente — o backend precisa tratar esse caso manualmente via API.
+8. Cada vendedor só visualiza e gerencia seus próprios `SubPedido` (nunca o pedido completo de outro vendedor).
 
-**Diretriz para o agente:** implementar o webhook do Mercado Pago como endpoint idempotente (evitar duplicar split em caso de reenvio de notificação).
+**Diretrizes para o agente:**
+- Implementar o webhook do Asaas como endpoint idempotente (evitar duplicar atualização de status em caso de reenvio de notificação).
+- Splits percentuais aceitam até 4 casas decimais; splits fixos, até 2. Validar isso antes de enviar a cobrança.
+- Nunca somar splits fixos e percentuais na mesma cobrança sem antes validar que a soma não ultrapassa o valor líquido total (o Asaas rejeita a requisição nesse caso).
+- O split de pagamentos do Asaas só é configurável via API — não há painel visual para isso, então toda a lógica de cálculo deve viver no backend (NestJS), nunca ser assumida como "configuração manual" em algum lugar.
 
 ---
 
@@ -139,7 +145,7 @@ Promocao
 - Dois tipos de conta: `CONSUMIDOR` e `VENDEDOR`, definidos no cadastro
 - Login via e-mail/senha ou Google OAuth (Supabase Auth)
 - Verificação de e-mail obrigatória antes de liberar compra (consumidor) ou publicação de produtos (vendedor)
-- Vendedor precisa adicionalmente vincular uma conta Mercado Pago válida (`mp_account_id`) antes de poder publicar produtos — sem isso, não é possível receber split
+- Vendedor precisa adicionalmente possuir uma subconta Asaas válida (`asaas_wallet_id`) antes de poder publicar produtos — sem isso, não é possível receber split
 
 ---
 
@@ -151,11 +157,13 @@ Para caber no prazo de 1 semana, os itens abaixo ficam documentados mas **não**
 - Cálculo de frete real via API de transportadora (usar valor fixo/simulado no MVP)
 - Sistema de cupons de desconto
 - App mobile
-- Múltiplos métodos de pagamento além do Mercado Pago
+- Múltiplos gateways de pagamento além do Asaas
+- Tratamento de estorno parcial de split (implementar apenas fluxo de estorno total no MVP)
+- Antecipação de recebíveis para vendedores
 
 ---
 
-## 9. Diretrizes Gerais para o Agente (Gemini)
+## 9. Diretrizes Gerais para o Agente
 
 - Sempre perguntar antes de assumir decisões de arquitetura não cobertas neste documento.
 - Não remover funcionalidades descritas aqui, exceto por erro lógico ou risco de segurança comprovado — nesse caso, explicar antes de alterar.
