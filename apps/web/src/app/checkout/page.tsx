@@ -92,10 +92,78 @@ export default function CheckoutPage() {
       .then((data) => {
         const cartIds = new Set(cart.map(item => item.id));
         const filtered = data.filter((p: any) => !cartIds.has(p.id) && p.stock > 0);
-        // Exibe no máximo 4 produtos recomendados
-        setRecommendedProducts(filtered.slice(0, 4));
+        
+        // Se após filtrar os itens do carrinho não restar nenhum produto real cadastrado,
+        // geramos produtos mock elegantes para demonstração do MVP
+        if (filtered.length === 0) {
+          const mocks = [
+            {
+              id: 'mock-recomenda-1',
+              name: 'Smartwatch Sport Fit',
+              price: 199.90,
+              images: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop&q=80'],
+              stock: 10,
+              vendor_id: 'mock-vendor',
+              vendors: { store_name: 'Tech Store' }
+            },
+            {
+              id: 'mock-recomenda-2',
+              name: 'Fone de Ouvido Bluetooth Premium',
+              price: 349.90,
+              images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80'],
+              stock: 5,
+              vendor_id: 'mock-vendor',
+              vendors: { store_name: 'Audio Hub' }
+            },
+            {
+              id: 'mock-recomenda-3',
+              name: 'Óculos de Sol Classic Polarized',
+              price: 129.90,
+              images: ['https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&auto=format&fit=crop&q=80'],
+              stock: 8,
+              vendor_id: 'mock-vendor',
+              vendors: { store_name: 'Style Vision' }
+            },
+            {
+              id: 'mock-recomenda-4',
+              name: 'Garrafa Térmica Inox Vacuum 750ml',
+              price: 89.90,
+              images: ['https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&auto=format&fit=crop&q=80'],
+              stock: 15,
+              vendor_id: 'mock-vendor',
+              vendors: { store_name: 'Active Life' }
+            }
+          ];
+          setRecommendedProducts(mocks.slice(0, 2)); // Mostra 2 mocks
+        } else {
+          setRecommendedProducts(filtered.slice(0, 4));
+        }
       })
-      .catch((err) => console.error('Erro ao buscar produtos recomendados:', err));
+      .catch((err) => {
+        console.error('Erro ao buscar produtos recomendados:', err);
+        // Se a requisição falhar (ex: backend offline), também ativa mocks para o MVP continuar testável
+        const mocks = [
+          {
+            id: 'mock-recomenda-1',
+            name: 'Smartwatch Sport Fit',
+            price: 199.90,
+            images: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop&q=80'],
+            stock: 10,
+            vendor_id: 'mock-vendor',
+            vendors: { store_name: 'Tech Store' }
+          },
+          {
+            id: 'mock-recomenda-2',
+            name: 'Fone de Ouvido Bluetooth Premium',
+            price: 349.90,
+            images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=80'],
+            stock: 5,
+            vendor_id: 'mock-vendor',
+            vendors: { store_name: 'Audio Hub' }
+          }
+        ];
+        setRecommendedProducts(mocks);
+      });
   }, [cart, isMounted, backendUrl]);
 
   const handlePlaceOrder = async () => {

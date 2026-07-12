@@ -109,3 +109,11 @@ export async function logout() {
   }
   redirect('/login');
 }
+
+export async function signInWithProvider(provider: 'google' | 'microsoft' | 'apple') {
+  const supabase = await createClient();
+  await supabase.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo: `${location.origin}/auth/callback` },
+  });
+}

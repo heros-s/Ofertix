@@ -3,6 +3,7 @@
 import { useActionState } from 'react';
 import Link from 'next/link';
 import { login } from '../actions';
+import { SocialLoginButton } from '@/components/auth/SocialLoginButton';
 import { ShoppingBag, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
@@ -35,6 +36,11 @@ export default function LoginPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 border border-slate-200 shadow-xl sm:rounded-2xl sm:px-10">
+          <div className="space-y-2 mb-4">
+            <SocialLoginButton provider="google" label="Entrar com Google" />
+            <SocialLoginButton provider="microsoft" label="Entrar com Microsoft" />
+            <SocialLoginButton provider="apple" label="Entrar com Apple" />
+          </div>
           <form action={formAction} className="space-y-6">
             {state?.error && (
               <div className="p-4 bg-rose-50 border border-rose-200 text-rose-600 text-sm rounded-lg text-center font-medium">
