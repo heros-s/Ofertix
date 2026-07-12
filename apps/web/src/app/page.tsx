@@ -1,7 +1,8 @@
 import Header from '@/components/layout/header';
 import ProductCard from '@/components/product/product-card';
+import HeroBannerCarousel from '@/components/home/hero-banner-carousel';
 import Link from 'next/link';
-import { ShoppingBag, ArrowRight, SearchX, Sparkles } from 'lucide-react';
+import { ShoppingBag, SearchX } from 'lucide-react';
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
 
@@ -63,38 +64,7 @@ export default async function Home({ searchParams }: HomePageProps) {
       <Header />
 
       {/* Hero Banner (Apenas se não houver busca/filtros ativos para manter foco nos resultados) */}
-      {!isFiltered && (
-        <section className="bg-gradient-to-r from-primary-50 via-slate-50 to-pink-50/30 border-b border-slate-200/80 text-slate-900 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-4 max-w-2xl text-center md:text-left">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-100/80 text-primary-900 rounded-full text-[11px] font-bold uppercase tracking-wider border border-primary-200/50">
-                <Sparkles className="h-3 w-3 text-primary-700" /> Especial de Lançamento
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-slate-950">
-                Carrinho Único, <span className="bg-gradient-to-r from-primary-600 to-violet-600 bg-clip-text text-transparent">Múltiplos Vendedores</span>
-              </h1>
-              <p className="text-slate-650 text-sm sm:text-base leading-relaxed font-semibold">
-                Adicione produtos de diferentes lojas ao mesmo carrinho, faça um único checkout e receba tudo junto. Sem complicações e com pagamento seguro e integrado.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0 z-10">
-              <a
-                href="#vitrine"
-                className="inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3 px-6 font-bold text-sm text-white shadow-md shadow-primary-600/10 transition-all duration-200"
-              >
-                Ver Promoções
-              </a>
-              <a
-                href="#vitrine"
-                className="inline-flex justify-center items-center gap-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 py-3 px-6 font-bold text-sm text-slate-700 shadow-sm transition-all duration-200"
-              >
-                Explorar Vitrine <ArrowRight className="h-4 w-4 text-slate-500" />
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
+      {!isFiltered && <HeroBannerCarousel />}
 
       {/* Seção da Vitrine */}
       <main id="vitrine" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
