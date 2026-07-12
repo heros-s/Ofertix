@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/layout/header';
 import Link from 'next/link';
@@ -24,6 +26,7 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { cart, cartTotal, clearCart, isMounted, addToCart } = useCart();
   const supabase = createClient();
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);

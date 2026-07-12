@@ -1,0 +1,54 @@
+> web@0.1.0 build
+> next build
+
+◇ injected env (0) from ..\..\.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+◇ injected env (0) from ..\..\.env // tip: ⌘ override existing { override: true }
+   ▲ Next.js 15.1.11
+
+   Creating an optimized production build ...
+◇ injected env (0) from ..\..\.env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from ..\..\.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (106kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (250kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⚠ Compiled with warnings
+
+./node_modules/@supabase/supabase-js/dist/index.mjs
+A Node.js API is used (process.version at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+Import trace for requested module:
+./node_modules/@supabase/supabase-js/dist/index.mjs
+./node_modules/@supabase/ssr/dist/module/createServerClient.js
+./node_modules/@supabase/ssr/dist/module/index.js
+./src/lib/supabase/middleware.ts
+
+◇ injected env (0) from ..\..\.env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data  ..⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js.  Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 222 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+   Collecting page data  ...⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js.. Please upgrade to Node.js 22 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 222 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 222 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+ ✓ Collecting page data
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 222 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+⚠️  Node.js 20 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. Please upgrade to Node.js 222 or later. For more information, visit: https://github.com/orgs/supabase/discussions/45715
+Error occurred prerendering page "/checkout". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: @supabase/ssr: Your project's URL and API key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at sc (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\.next\server\chunks\497.js:42:105)
+    at i (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\.next\server\chunks\100.js:1:7944)
+    at v (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\.next\server\app\checkout\page.js:1:4657)
+    at nO (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:45959)   
+    at nI (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:47734)   
+    at nL (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:65533)   
+    at nN (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:63164)   
+    at n$ (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:46311)   
+    at nI (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:47780)   
+    at nI (C:\Users\heros.dinao\Documents\Prs\Ofertix\apps\web\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:20:62515)   
+Export encountered an error on /checkout/page: /checkout, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

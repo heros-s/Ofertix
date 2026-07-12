@@ -1,0 +1,70 @@
+12:36:42.161 Running build in Washington, D.C., USA (East) – iad1
+12:36:42.162 Build machine configuration: 2 cores, 8 GB
+12:36:42.269 Cloning github.com/heros-s/Ofertix (Branch: main, Commit: 9b15e7a)
+12:36:42.528 Cloning completed: 257.000ms
+12:36:43.455 Restored build cache from previous deployment (GfXQSL7wsrmUPG3Z9Fje9bWbJTAL)
+12:36:43.666 Running "vercel build"
+12:36:43.684 Vercel CLI 55.0.0
+12:36:44.091 Installing dependencies...
+12:36:45.697 
+12:36:45.698 up to date in 1s
+12:36:45.699 
+12:36:45.699 145 packages are looking for funding
+12:36:45.699   run `npm fund` for details
+12:36:45.732 Detected Next.js version: 15.1.11
+12:36:45.736 Running "npm run build"
+12:36:45.847 
+12:36:45.847 > web@0.1.0 build
+12:36:45.847 > next build
+12:36:45.847 
+12:36:46.604 ◇ injected env (0) from ../../.env // tip: ◈ secrets for agents [www.dotenvx.com]
+12:36:46.689 ◇ injected env (0) from ../../.env // tip: ⌘ suppress logs { quiet: true }
+12:36:46.694    ▲ Next.js 15.1.11
+12:36:46.694 
+12:36:46.718    Creating an optimized production build ...
+12:36:47.265 ◇ injected env (0) from ../../.env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+12:36:51.355 Failed to compile.
+12:36:51.357 
+12:36:51.357 ./src/app/(auth)/actions.ts
+12:36:51.357 Error:   x 'import', and 'export' cannot be used outside of module code
+12:36:51.357      ,-[/vercel/path0/apps/web/src/app/(auth)/actions.ts:99:1]
+12:36:51.358   96 |     return { error: err.message || 'Ocorreu um erro inesperado no cadastro.' };
+12:36:51.358   97 | 'use server';
+12:36:51.358   98 | 
+12:36:51.358   99 | import { createClient } from '@/lib/supabase/server';
+12:36:51.359      : ^^^^^^
+12:36:51.359  100 | import { redirect } from 'next/navigation';
+12:36:51.359  101 | 
+12:36:51.359  102 | /**
+12:36:51.359      `----
+12:36:51.359 
+12:36:51.359 Caused by:
+12:36:51.360     Syntax Error
+12:36:51.360 
+12:36:51.360 Import trace for requested module:
+12:36:51.360 ./src/app/(auth)/actions.ts
+12:36:51.360 ./src/app/(auth)/login/page.tsx
+12:36:51.360 
+12:36:51.360 ./src/app/(auth)/actions.ts
+12:36:51.360 Error:   x 'import', and 'export' cannot be used outside of module code
+12:36:51.361      ,-[/vercel/path0/apps/web/src/app/(auth)/actions.ts:99:1]
+12:36:51.361   96 |     return { error: err.message || 'Ocorreu um erro inesperado no cadastro.' };
+12:36:51.361   97 | 'use server';
+12:36:51.361   98 | 
+12:36:51.361   99 | import { createClient } from '@/lib/supabase/server';
+12:36:51.361      : ^^^^^^
+12:36:51.361  100 | import { redirect } from 'next/navigation';
+12:36:51.361  101 | 
+12:36:51.361  102 | /**
+12:36:51.361      `----
+12:36:51.361 
+12:36:51.361 Caused by:
+12:36:51.361     Syntax Error
+12:36:51.361 
+12:36:51.361 Import trace for requested module:
+12:36:51.361 ./src/app/(auth)/actions.ts
+12:36:51.361 ./src/app/(vendedor)/dashboard/page.tsx
+12:36:51.361 
+12:36:51.363 
+12:36:51.363 > Build failed because of webpack errors
+12:36:51.398 Error: Command "npm run build" exited with 1
