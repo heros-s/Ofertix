@@ -2,8 +2,9 @@
 
 import { useActionState, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { signup } from '../actions';
-import { ShoppingBag, ArrowRight, User, Store, CheckCircle } from 'lucide-react';
+import { ArrowRight, User, Store, CheckCircle } from 'lucide-react';
 import { SocialLoginButton } from '@/components/auth/SocialLoginButton';
 
 export default function RegisterPage() {
@@ -12,7 +13,7 @@ export default function RegisterPage() {
 
   if (state?.success) {
     return (
-      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-indigo-50/30 to-slate-100">
+      <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-primary-50/30 to-slate-100">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-12 px-6 border border-slate-200 shadow-2xl sm:rounded-2xl sm:px-10 text-center space-y-6">
             <div className="inline-flex p-3 bg-emerald-50 rounded-full border border-emerald-100 text-emerald-600">
@@ -27,7 +28,7 @@ export default function RegisterPage() {
             <div>
               <Link
                 href="/login"
-                className="flex w-full justify-center items-center gap-2 rounded-xl bg-indigo-600 py-3 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 hover:bg-indigo-700 transition-all duration-200"
+                className="flex w-full justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 py-3 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 hover:from-primary-600 hover:to-primary-800 transition-all duration-200"
               >
                 Ir para o Login <ArrowRight className="h-4 w-4" />
               </Link>
@@ -39,15 +40,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-indigo-50/30 to-slate-100">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-primary-50/30 to-slate-100">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link href="/" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 transition-colors">
-          <div className="p-2 bg-indigo-50 rounded-xl border border-indigo-100">
-            <ShoppingBag className="h-8 w-8 text-indigo-600" />
-          </div>
-          <span className="text-3xl font-extrabold tracking-tight text-slate-950">
-            Ofertix
-          </span>
+        <Link href="/" className="inline-flex items-center justify-center">
+          <Image src="/images/logo.svg" alt="Ofertix" width={180} height={42} priority />
         </Link>
         <h2 className="mt-6 text-2xl font-bold tracking-tight text-slate-900">
           Crie sua conta na plataforma
@@ -56,7 +52,7 @@ export default function RegisterPage() {
           Ou{' '}
           <Link
             href="/login"
-            className="font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+            className="font-semibold text-primary-600 hover:text-primary-700 transition-colors"
           >
             acesse uma conta já existente
           </Link>
@@ -93,7 +89,7 @@ export default function RegisterPage() {
                   onClick={() => setAccountType('CONSUMER')}
                   className={`flex flex-col items-center gap-3 p-4 rounded-xl border text-center transition-all duration-200 ${
                     accountType === 'CONSUMER'
-                      ? 'border-indigo-600 bg-indigo-50 text-indigo-600 shadow-lg shadow-indigo-600/5'
+                      ? 'border-primary-600 bg-primary-50 text-primary-600 shadow-lg shadow-primary-600/5'
                       : 'border-slate-200 bg-slate-50/50 text-slate-500 hover:border-slate-300 hover:text-slate-700'
                   }`}
                 >
@@ -108,7 +104,7 @@ export default function RegisterPage() {
                   onClick={() => setAccountType('VENDOR')}
                   className={`flex flex-col items-center gap-3 p-4 rounded-xl border text-center transition-all duration-200 ${
                     accountType === 'VENDOR'
-                      ? 'border-indigo-600 bg-indigo-50 text-indigo-600 shadow-lg shadow-indigo-600/5'
+                      ? 'border-primary-600 bg-primary-50 text-primary-600 shadow-lg shadow-primary-600/5'
                       : 'border-slate-200 bg-slate-50/50 text-slate-500 hover:border-slate-300 hover:text-slate-700'
                   }`}
                 >
@@ -132,7 +128,7 @@ export default function RegisterPage() {
                   type="text"
                   required
                   disabled={isPending}
-                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
+                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
                   placeholder={accountType === 'VENDOR' ? 'Ofertix Eletrônicos Ltda.' : 'João da Silva'}
                 />
               </div>
@@ -153,7 +149,7 @@ export default function RegisterPage() {
                   autoComplete="email"
                   required
                   disabled={isPending}
-                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
+                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
                   placeholder="exemplo@ofertix.com"
                 />
               </div>
@@ -173,7 +169,7 @@ export default function RegisterPage() {
                   type="password"
                   required
                   disabled={isPending}
-                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
+                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
                   placeholder="Mínimo 6 caracteres"
                 />
               </div>
@@ -183,7 +179,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="flex w-full justify-center items-center gap-2 rounded-xl bg-indigo-600 py-3 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
+                className="flex w-full justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 py-3 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 hover:from-primary-600 hover:to-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
               >
                 {isPending ? (
                   <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />

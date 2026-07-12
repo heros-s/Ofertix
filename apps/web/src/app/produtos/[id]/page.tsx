@@ -39,7 +39,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <p className="text-slate-500 text-sm">{errorMsg || 'Este produto pode ter sido inativado ou removido pelo vendedor.'}</p>
             <Link
               href="/"
-              className="inline-flex justify-center items-center rounded-xl bg-indigo-600 py-2.5 px-4 text-sm font-semibold text-white hover:bg-indigo-700 transition-all duration-200"
+              className="inline-flex justify-center items-center rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 py-2.5 px-4 text-sm font-semibold text-white hover:from-primary-600 hover:to-primary-800 transition-all duration-200"
             >
               Voltar para a Vitrine
             </Link>
@@ -59,11 +59,11 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       {/* Navegação Breadcrumb */}
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-indigo-650 transition-colors">
+          <Link href="/" className="hover:text-primary-700 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3" />
-          <Link href={`/?category=${product.category_id}`} className="hover:text-indigo-650 transition-colors">
+          <Link href={`/?category=${product.category_id}`} className="hover:text-primary-700 transition-colors">
             {categoryName}
           </Link>
           <ChevronRight className="h-3 w-3" />
@@ -73,7 +73,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         {/* Botão Voltar */}
-        <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-indigo-600 transition-colors">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-primary-600 transition-colors">
           <ArrowLeft className="h-4 w-4" /> Voltar para a Vitrine
         </Link>
 
@@ -93,7 +93,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             {/* Garantias Ofertix */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-indigo-50 rounded-xl text-indigo-600 mt-0.5">
+                <div className="p-2 bg-primary-50 rounded-xl text-primary-600 mt-0.5">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
                 <div>
@@ -102,7 +102,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-indigo-50 rounded-xl text-indigo-600 mt-0.5">
+                <div className="p-2 bg-primary-50 rounded-xl text-primary-600 mt-0.5">
                   <Truck className="h-5 w-5" />
                 </div>
                 <div>
@@ -111,7 +111,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="p-2 bg-indigo-50 rounded-xl text-indigo-600 mt-0.5">
+                <div className="p-2 bg-primary-50 rounded-xl text-primary-600 mt-0.5">
                   <RefreshCw className="h-5 w-5" />
                 </div>
                 <div>
@@ -127,7 +127,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <h3 className="font-bold text-slate-900">Sobre o Vendedor</h3>
             <div className="space-y-4 text-sm">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 bg-indigo-100 text-indigo-700 font-bold rounded-xl flex items-center justify-center">
+                <div className="h-10 w-10 bg-primary-100 text-primary-700 font-bold rounded-xl flex items-center justify-center">
                   {storeName.charAt(0).toUpperCase()}
                 </div>
                 <div>
@@ -150,7 +150,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               <div className="border-t border-slate-100 pt-4">
                 <Link
                   href={`/loja/${product.vendor_id}`}
-                  className="w-full inline-flex justify-center items-center gap-2 rounded-xl border border-indigo-600 text-indigo-600 hover:bg-indigo-50 py-2.5 px-4 text-xs font-bold transition-all duration-200"
+                  className="w-full inline-flex justify-center items-center gap-2 rounded-xl border border-primary-600 text-primary-600 hover:bg-primary-50 py-2.5 px-4 text-xs font-bold transition-all duration-200"
                 >
                   <Store className="h-4 w-4" /> Visitar Loja Completa
                 </Link>

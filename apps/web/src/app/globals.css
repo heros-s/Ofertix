@@ -10,6 +10,20 @@
   --color-foreground: var(--foreground);
 }
 
+@theme {
+  --color-primary-50: #fff9f5;
+  --color-primary-100: #fef0e7;
+  --color-primary-200: #fde1cc;
+  --color-primary-300: #fbc9a4;
+  --color-primary-400: #f9b07b;
+  --color-primary-500: #f79852;
+  --color-primary-600: #f58634;
+  --color-primary-700: #d0722c;
+  --color-primary-800: #a75b23;
+  --color-primary-900: #7b431a;
+  --color-primary-950: #3d220d;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

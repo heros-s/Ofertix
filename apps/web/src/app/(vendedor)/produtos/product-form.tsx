@@ -148,7 +148,7 @@ export default function ProductForm({ categories, initialData, action }: Product
               disabled={isPending}
               defaultValue={initialData?.name}
               placeholder="Ex: Smartwatch Premium X1"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
 
@@ -162,7 +162,7 @@ export default function ProductForm({ categories, initialData, action }: Product
               required
               disabled={isPending}
               defaultValue={initialData?.category_id}
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             >
               <option value="">Selecione uma categoria</option>
               {categories.map((cat) => (
@@ -185,7 +185,7 @@ export default function ProductForm({ categories, initialData, action }: Product
             disabled={isPending}
             defaultValue={initialData?.description}
             placeholder="Descreva detalhadamente o produto, suas características, especificações técnicas..."
-            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200 resize-y"
+            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200 resize-y"
           />
         </div>
 
@@ -203,7 +203,7 @@ export default function ProductForm({ categories, initialData, action }: Product
               onInput={handlePriceInput}
               defaultValue={initialData?.price}
               placeholder="Ex: 299.90"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
 
@@ -220,7 +220,7 @@ export default function ProductForm({ categories, initialData, action }: Product
               onInput={preventNonNumerical}
               defaultValue={initialData?.stock}
               placeholder="Ex: 15"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
         </div>
@@ -268,7 +268,7 @@ export default function ProductForm({ categories, initialData, action }: Product
           <label className={`relative aspect-square border-2 border-dashed rounded-xl flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-200 ${
             uploading || isPending
               ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed'
-              : 'border-slate-300 hover:border-indigo-500 hover:bg-indigo-50/20 text-slate-500 hover:text-indigo-650'
+              : 'border-slate-300 hover:border-primary-500 hover:bg-primary-50/20 text-slate-500 hover:text-primary-700'
           }`}>
             <input
               type="file"
@@ -280,7 +280,7 @@ export default function ProductForm({ categories, initialData, action }: Product
             />
             {uploading ? (
               <>
-                <Loader2 className="h-6 w-6 animate-spin text-indigo-600 mb-1" />
+                <Loader2 className="h-6 w-6 animate-spin text-primary-600 mb-1" />
                 <span className="text-[11px] font-semibold text-slate-500">Enviando...</span>
               </>
             ) : (
@@ -313,7 +313,7 @@ export default function ProductForm({ categories, initialData, action }: Product
         <button
           type="submit"
           disabled={isPending || uploading}
-          className="inline-flex justify-center items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 py-3 px-5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3 px-5 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isPending ? (
             <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />

@@ -229,7 +229,7 @@ export default function CheckoutRegisterPage() {
         <div>
           <Link
             href="/carrinho"
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-indigo-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-primary-600 transition-colors"
           >
             <ChevronLeft className="h-4 w-4" /> Voltar para o carrinho
           </Link>
@@ -252,7 +252,7 @@ export default function CheckoutRegisterPage() {
             {/* Seção 1: Dados Pessoais */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
               <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2 pb-3 border-b border-slate-100">
-                <User className="h-5 w-5 text-indigo-600" /> Dados Pessoais
+                <User className="h-5 w-5 text-primary-600" /> Dados Pessoais
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -264,7 +264,7 @@ export default function CheckoutRegisterPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className={`w-full bg-slate-50 border ${
-                        validationErrors.name ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-indigo-500'
+                        validationErrors.name ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-primary-500'
                       } text-sm rounded-xl py-3 px-4 focus:outline-none focus:ring-1 transition-all`}
                       placeholder="Ex: João da Silva"
                     />
@@ -280,7 +280,7 @@ export default function CheckoutRegisterPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className={`w-full bg-slate-50 border ${
-                        validationErrors.email ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-indigo-500'
+                        validationErrors.email ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-primary-500'
                       } text-sm rounded-xl py-3 px-4 focus:outline-none focus:ring-1 transition-all`}
                       placeholder="exemplo@email.com"
                     />
@@ -296,7 +296,7 @@ export default function CheckoutRegisterPage() {
                       value={phone}
                       onChange={(e) => setPhone(formatPhone(e.target.value))}
                       className={`w-full bg-slate-50 border ${
-                        validationErrors.phone ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-indigo-500'
+                        validationErrors.phone ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-primary-500'
                       } text-sm rounded-xl py-3 px-4 focus:outline-none focus:ring-1 transition-all`}
                       placeholder="(00) 00000-0000"
                     />
@@ -312,7 +312,7 @@ export default function CheckoutRegisterPage() {
                       value={cpf}
                       onChange={(e) => setCpf(formatCPF(e.target.value))}
                       className={`w-full bg-slate-50 border ${
-                        validationErrors.cpf ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-indigo-500'
+                        validationErrors.cpf ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-primary-500'
                       } text-sm rounded-xl py-3 px-4 focus:outline-none focus:ring-1 transition-all`}
                       placeholder="000.000.000-00"
                     />
@@ -328,7 +328,7 @@ export default function CheckoutRegisterPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className={`w-full bg-slate-50 border ${
-                        validationErrors.password ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-indigo-500'
+                        validationErrors.password ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-primary-500'
                       } text-sm rounded-xl py-3 px-4 focus:outline-none focus:ring-1 transition-all`}
                       placeholder="No mínimo 6 dígitos"
                     />
@@ -341,7 +341,7 @@ export default function CheckoutRegisterPage() {
             {/* Seção 2: Endereço de Entrega */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
               <h2 className="text-lg font-bold text-slate-950 flex items-center gap-2 pb-3 border-b border-slate-100">
-                <MapPin className="h-5 w-5 text-indigo-600" /> Endereço de Entrega
+                <MapPin className="h-5 w-5 text-primary-600" /> Endereço de Entrega
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -353,7 +353,7 @@ export default function CheckoutRegisterPage() {
                       value={cep}
                       onChange={(e) => setCep(formatCEP(e.target.value))}
                       className={`w-full bg-slate-50 border ${
-                        validationErrors.cep ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-indigo-500'
+                        validationErrors.cep ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200 focus:border-primary-500'
                       } text-sm rounded-xl py-3 px-4 focus:outline-none focus:ring-1 transition-all`}
                       placeholder="00000-000"
                     />
@@ -374,7 +374,7 @@ export default function CheckoutRegisterPage() {
                     onChange={(e) => setStreet(e.target.value)}
                     className={`w-full bg-slate-50 border ${
                       validationErrors.street ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200'
-                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-indigo-500 transition-all`}
+                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-primary-500 transition-all`}
                     placeholder="Av. Paulista, etc."
                   />
                   {validationErrors.street && <p className="text-xs text-rose-500 font-semibold">{validationErrors.street}</p>}
@@ -388,7 +388,7 @@ export default function CheckoutRegisterPage() {
                     onChange={(e) => setNumber(e.target.value)}
                     className={`w-full bg-slate-50 border ${
                       validationErrors.number ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200'
-                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-indigo-500 transition-all`}
+                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-primary-500 transition-all`}
                     placeholder="123"
                   />
                   {validationErrors.number && <p className="text-xs text-rose-500 font-semibold">{validationErrors.number}</p>}
@@ -400,7 +400,7 @@ export default function CheckoutRegisterPage() {
                     type="text"
                     value={complement}
                     onChange={(e) => setComplement(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-indigo-500 transition-all"
+                    className="w-full bg-slate-50 border border-slate-200 text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-primary-500 transition-all"
                     placeholder="Apto 45, Bloco B (Opcional)"
                   />
                 </div>
@@ -413,7 +413,7 @@ export default function CheckoutRegisterPage() {
                     onChange={(e) => setNeighborhood(e.target.value)}
                     className={`w-full bg-slate-50 border ${
                       validationErrors.neighborhood ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200'
-                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-indigo-500 transition-all`}
+                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-primary-500 transition-all`}
                     placeholder="Centro"
                   />
                   {validationErrors.neighborhood && <p className="text-xs text-rose-500 font-semibold">{validationErrors.neighborhood}</p>}
@@ -427,7 +427,7 @@ export default function CheckoutRegisterPage() {
                     onChange={(e) => setCity(e.target.value)}
                     className={`w-full bg-slate-50 border ${
                       validationErrors.city ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200'
-                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-indigo-500 transition-all`}
+                    } text-sm rounded-xl py-3 px-4 focus:outline-none focus:border-primary-500 transition-all`}
                     placeholder="São Paulo"
                   />
                   {validationErrors.city && <p className="text-xs text-rose-500 font-semibold">{validationErrors.city}</p>}
@@ -442,7 +442,7 @@ export default function CheckoutRegisterPage() {
                     onChange={(e) => setState(e.target.value.toUpperCase())}
                     className={`w-full bg-slate-50 border ${
                       validationErrors.state ? 'border-rose-500 focus:ring-rose-500' : 'border-slate-200'
-                    } text-sm rounded-xl py-3 px-4 text-center focus:outline-none focus:border-indigo-500 transition-all`}
+                    } text-sm rounded-xl py-3 px-4 text-center focus:outline-none focus:border-primary-500 transition-all`}
                     placeholder="SP"
                   />
                   {validationErrors.state && <p className="text-xs text-rose-500 font-semibold">{validationErrors.state}</p>}
@@ -456,7 +456,7 @@ export default function CheckoutRegisterPage() {
                   id="isDefault"
                   checked={isDefault}
                   onChange={(e) => setIsDefault(e.target.checked)}
-                  className="h-4.5 w-4.5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 transition-all cursor-pointer"
+                  className="h-4.5 w-4.5 rounded border-slate-300 text-primary-600 focus:ring-primary-500 transition-all cursor-pointer"
                 />
                 <label htmlFor="isDefault" className="text-sm font-semibold text-slate-700 cursor-pointer select-none">
                   Salvar este endereço como meu endereço de entrega padrão
@@ -468,7 +468,7 @@ export default function CheckoutRegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>

@@ -108,9 +108,9 @@ function HeaderContent() {
             placeholder="O que você está procurando hoje?"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className="w-full bg-slate-800 text-white placeholder-slate-400 text-sm rounded-xl py-3 pl-4 pr-10 border border-slate-700/50 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all duration-200"
+            className="w-full bg-slate-800 text-white placeholder-slate-400 text-sm rounded-xl py-3 pl-4 pr-10 border border-slate-700/50 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 transition-all duration-200"
           />
-          <button type="submit" className="absolute right-3 top-3 text-slate-400 hover:text-indigo-400 transition-colors">
+          <button type="submit" className="absolute right-3 top-3 text-slate-400 hover:text-primary-400 transition-colors">
             <Search className="h-5 w-5" />
           </button>
         </form>
@@ -121,7 +121,7 @@ function HeaderContent() {
           {userProfile?.type === 'VENDOR' && (
             <Link
               href="/dashboard"
-              className="hidden lg:inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-400 hover:text-indigo-300 transition-colors px-3 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/10"
+              className="hidden lg:inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-400 hover:text-primary-300 transition-colors px-3 py-1.5 rounded-lg border border-primary-500/30 bg-primary-500/10"
             >
               <Store className="h-3.5 w-3.5" /> Painel de Vendas
             </Link>
@@ -135,7 +135,7 @@ function HeaderContent() {
           >
             <ShoppingBag className="h-6 w-6" />
             {isMounted && cartItemsCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-slate-900 animate-in zoom-in-50 duration-200">
+              <span className="absolute -top-1 -right-1 bg-gradient-to-br from-primary-400 to-primary-600 text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-slate-900 animate-in zoom-in-50 duration-200">
                 {cartItemsCount}
               </span>
             )}
@@ -148,7 +148,7 @@ function HeaderContent() {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-2 p-1 hover:bg-slate-800 rounded-xl transition-all duration-200 text-left focus:outline-none"
               >
-                <div className="h-8 w-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">
+                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 text-white flex items-center justify-center font-bold text-sm">
                   {userProfile?.name?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div className="hidden sm:block text-xs max-w-[120px] truncate">
@@ -194,7 +194,7 @@ function HeaderContent() {
               </Link>
               <Link
                 href="/register"
-                className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-755 text-white font-semibold text-sm shadow-md transition-all duration-200"
+                className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-semibold text-sm shadow-md transition-all duration-200"
               >
                 Cadastrar
               </Link>

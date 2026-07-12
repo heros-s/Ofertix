@@ -64,14 +64,14 @@ export default async function Home({ searchParams }: HomePageProps) {
 
       {/* Hero Banner (Apenas se não houver busca/filtros ativos para manter foco nos resultados) */}
       {!isFiltered && (
-        <section className="bg-gradient-to-r from-indigo-50 via-slate-50 to-pink-50/30 border-b border-slate-200/80 text-slate-900 relative overflow-hidden">
+        <section className="bg-gradient-to-r from-primary-50 via-slate-50 to-pink-50/30 border-b border-slate-200/80 text-slate-900 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-4 max-w-2xl text-center md:text-left">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-100/80 text-indigo-900 rounded-full text-[11px] font-bold uppercase tracking-wider border border-indigo-200/50">
-                <Sparkles className="h-3 w-3 text-indigo-650" /> Especial de Lançamento
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary-100/80 text-primary-900 rounded-full text-[11px] font-bold uppercase tracking-wider border border-primary-200/50">
+                <Sparkles className="h-3 w-3 text-primary-700" /> Especial de Lançamento
               </div>
               <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-slate-950">
-                Carrinho Único, <span className="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Múltiplos Vendedores</span>
+                Carrinho Único, <span className="bg-gradient-to-r from-primary-600 to-violet-600 bg-clip-text text-transparent">Múltiplos Vendedores</span>
               </h1>
               <p className="text-slate-650 text-sm sm:text-base leading-relaxed font-semibold">
                 Adicione produtos de diferentes lojas ao mesmo carrinho, faça um único checkout e receba tudo junto. Sem complicações e com pagamento seguro e integrado.
@@ -81,7 +81,7 @@ export default async function Home({ searchParams }: HomePageProps) {
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0 z-10">
               <a
                 href="#vitrine"
-                className="inline-flex justify-center items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 py-3 px-6 font-bold text-sm text-white shadow-md shadow-indigo-600/10 transition-all duration-200"
+                className="inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3 px-6 font-bold text-sm text-white shadow-md shadow-primary-600/10 transition-all duration-200"
               >
                 Ver Promoções
               </a>
@@ -118,7 +118,7 @@ export default async function Home({ searchParams }: HomePageProps) {
           {isFiltered && (
             <Link
               href="/"
-              className="text-xs font-bold uppercase tracking-wider text-indigo-600 hover:text-indigo-700 transition-colors border-b-2 border-indigo-600 pb-0.5"
+              className="text-xs font-bold uppercase tracking-wider text-primary-600 hover:text-primary-700 transition-colors border-b-2 border-primary-600 pb-0.5"
             >
               Limpar Filtros
             </Link>
@@ -146,7 +146,7 @@ export default async function Home({ searchParams }: HomePageProps) {
             {isFiltered && (
               <Link
                 href="/"
-                className="inline-flex justify-center items-center rounded-xl bg-indigo-600 hover:bg-indigo-700 py-2.5 px-5 text-sm font-semibold text-white shadow transition-all duration-200"
+                className="inline-flex justify-center items-center rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-2.5 px-5 text-sm font-semibold text-white shadow transition-all duration-200"
               >
                 Voltar para Vitrine Completa
               </Link>

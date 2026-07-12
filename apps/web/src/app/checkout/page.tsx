@@ -189,7 +189,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
         <Header />
         <main className="flex-1 flex items-center justify-center p-6">
-          <Loader2 className="h-8 w-8 animate-spin text-indigo-600" />
+          <Loader2 className="h-8 w-8 animate-spin text-primary-600" />
         </main>
       </div>
     );
@@ -217,7 +217,7 @@ export default function CheckoutPage() {
           {paymentMethod === 'PIX' && (
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-sm mx-auto space-y-4">
               <h3 className="font-bold text-slate-900 text-sm flex items-center justify-center gap-1.5">
-                <QrCode className="h-4.5 w-4.5 text-indigo-600" /> Pagamento via PIX (Simulação)
+                <QrCode className="h-4.5 w-4.5 text-primary-600" /> Pagamento via PIX (Simulação)
               </h3>
               <div className="bg-slate-50 p-4 rounded-xl border border-dashed border-slate-200 inline-block">
                 <img
@@ -238,10 +238,10 @@ export default function CheckoutPage() {
           {paymentMethod === 'BOLETO' && (
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-sm mx-auto space-y-4">
               <h3 className="font-bold text-slate-900 text-sm flex items-center justify-center gap-1.5">
-                <Receipt className="h-4.5 w-4.5 text-indigo-600" /> Cobrança em Boleto (Simulação)
+                <Receipt className="h-4.5 w-4.5 text-primary-600" /> Cobrança em Boleto (Simulação)
               </h3>
               <p className="text-xs text-slate-500">O boleto em sandbox do Asaas foi emitido. Em produção, o cliente recebe o PDF para pagamento.</p>
-              <button className="w-full py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl transition-all">
+              <button className="w-full py-2.5 bg-primary-50 hover:bg-primary-100 text-primary-700 font-bold text-xs rounded-xl transition-all">
                 Visualizar Boleto Simulado
               </button>
             </div>
@@ -258,7 +258,7 @@ export default function CheckoutPage() {
           <div className="pt-4">
             <Link
               href="/"
-              className="inline-flex justify-center items-center rounded-xl bg-indigo-600 hover:bg-indigo-700 py-3 px-6 font-bold text-sm text-white shadow transition-all duration-200"
+              className="inline-flex justify-center items-center rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3 px-6 font-bold text-sm text-white shadow transition-all duration-200"
             >
               Voltar para a Vitrine
             </Link>
@@ -276,7 +276,7 @@ export default function CheckoutPage() {
         <div>
           <Link
             href="/carrinho"
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-indigo-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-primary-600 transition-colors"
           >
             <ChevronLeft className="h-4 w-4" /> Voltar para o carrinho
           </Link>
@@ -293,12 +293,12 @@ export default function CheckoutPage() {
             {/* Seção Endereço */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
               <h2 className="text-base font-bold text-slate-950 flex items-center gap-2 pb-3 border-b border-slate-100">
-                <MapPin className="h-5 w-5 text-indigo-600" /> Endereço de Entrega
+                <MapPin className="h-5 w-5 text-primary-600" /> Endereço de Entrega
               </h2>
 
               {address ? (
                 <div className="flex items-start gap-3">
-                  <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg mt-0.5">
+                  <div className="p-2 bg-primary-50 text-primary-600 rounded-lg mt-0.5">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div className="text-sm">
@@ -313,7 +313,7 @@ export default function CheckoutPage() {
                   <p className="text-sm text-slate-500">Nenhum endereço de entrega cadastrado.</p>
                   <Link
                     href="/checkout/cadastro"
-                    className="inline-flex py-2 px-4 bg-indigo-600 text-white rounded-xl text-xs font-bold"
+                    className="inline-flex py-2 px-4 bg-gradient-to-br from-primary-400 to-primary-600 text-white rounded-xl text-xs font-bold"
                   >
                     Cadastrar Endereço
                   </Link>
@@ -324,7 +324,7 @@ export default function CheckoutPage() {
             {/* Seção Forma de Pagamento */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
               <h2 className="text-base font-bold text-slate-950 flex items-center gap-2 pb-3 border-b border-slate-100">
-                <CreditCard className="h-5 w-5 text-indigo-600" /> Forma de Pagamento
+                <CreditCard className="h-5 w-5 text-primary-600" /> Forma de Pagamento
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -333,7 +333,7 @@ export default function CheckoutPage() {
                   onClick={() => setPaymentMethod('PIX')}
                   className={`flex flex-col items-center justify-center p-4 border rounded-xl gap-2 transition-all ${
                     paymentMethod === 'PIX'
-                      ? 'border-indigo-600 bg-indigo-50/50 text-indigo-700'
+                      ? 'border-primary-600 bg-primary-50/50 text-primary-700'
                       : 'border-slate-200 hover:bg-slate-50 text-slate-600'
                   }`}
                 >
@@ -346,7 +346,7 @@ export default function CheckoutPage() {
                   onClick={() => setPaymentMethod('CREDIT_CARD')}
                   className={`flex flex-col items-center justify-center p-4 border rounded-xl gap-2 transition-all ${
                     paymentMethod === 'CREDIT_CARD'
-                      ? 'border-indigo-600 bg-indigo-50/50 text-indigo-700'
+                      ? 'border-primary-600 bg-primary-50/50 text-primary-700'
                       : 'border-slate-200 hover:bg-slate-50 text-slate-600'
                   }`}
                 >
@@ -359,7 +359,7 @@ export default function CheckoutPage() {
                   onClick={() => setPaymentMethod('BOLETO')}
                   className={`flex flex-col items-center justify-center p-4 border rounded-xl gap-2 transition-all ${
                     paymentMethod === 'BOLETO'
-                      ? 'border-indigo-600 bg-indigo-50/50 text-indigo-700'
+                      ? 'border-primary-600 bg-primary-50/50 text-primary-700'
                       : 'border-slate-200 hover:bg-slate-50 text-slate-600'
                   }`}
                 >
@@ -374,10 +374,10 @@ export default function CheckoutPage() {
               <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4 animate-fade-in">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <h2 className="text-base font-bold text-slate-950 flex items-center gap-2">
-                    <span className="flex h-2.5 w-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+                    <span className="flex h-2.5 w-2.5 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 animate-pulse"></span>
                     Aproveite para Adicionar
                   </h2>
-                  <span className="text-[10px] text-indigo-600 font-bold uppercase tracking-wider bg-indigo-50 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[10px] text-primary-600 font-bold uppercase tracking-wider bg-primary-50 px-2.5 py-0.5 rounded-full">
                     Recomendações
                   </span>
                 </div>
@@ -427,7 +427,7 @@ export default function CheckoutPage() {
                                   stock: product.stock,
                                 });
                               }}
-                              className="inline-flex items-center justify-center gap-1 py-1.5 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[10px] shadow-sm hover:shadow hover:shadow-indigo-600/10 active:scale-95 transition-all"
+                              className="inline-flex items-center justify-center gap-1 py-1.5 px-3 rounded-lg bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-bold text-[10px] shadow-sm hover:shadow hover:shadow-primary-600/10 active:scale-95 transition-all"
                             >
                               Adicionar
                             </button>
@@ -487,7 +487,7 @@ export default function CheckoutPage() {
               <button
                 onClick={handlePlaceOrder}
                 disabled={isSubmitting || !address}
-                className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
@@ -503,7 +503,7 @@ export default function CheckoutPage() {
 
             {/* Informação sobre Split / Segurança */}
             <div className="bg-slate-900 text-white border border-slate-800 rounded-2xl p-6 shadow-sm flex items-start gap-4">
-              <div className="p-2 bg-indigo-600 rounded-xl text-white mt-0.5">
+              <div className="p-2 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl text-white mt-0.5">
                 <ShieldCheck className="h-6 w-6" />
               </div>
               <div className="space-y-1">

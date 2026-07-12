@@ -40,7 +40,7 @@ export default function OnboardingForm() {
             required
             disabled={isPending}
             placeholder="Minha Loja Eletrônica"
-            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
           />
         </div>
 
@@ -56,7 +56,7 @@ export default function OnboardingForm() {
             disabled={isPending}
             onInput={handleCpfCnpjInput}
             placeholder="Apenas números"
-            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
           />
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function OnboardingForm() {
             onInput={preventNonNumerical}
             disabled={isPending}
             placeholder="Apenas números"
-            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
           />
         </div>
 
@@ -88,7 +88,7 @@ export default function OnboardingForm() {
             type="date"
             required={isCpf}
             disabled={isPending}
-            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
           />
         </div>
 
@@ -104,7 +104,7 @@ export default function OnboardingForm() {
             onInput={preventNonNumerical}
             disabled={isPending}
             placeholder="Ex: 5000"
-            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+            className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
           />
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function OnboardingForm() {
               onInput={preventNonNumerical}
               disabled={isPending}
               placeholder="00000000"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
 
@@ -141,7 +141,7 @@ export default function OnboardingForm() {
               required
               disabled={isPending}
               placeholder="Rua das Palmeiras"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
         </div>
@@ -159,7 +159,7 @@ export default function OnboardingForm() {
               onInput={preventNonNumerical}
               disabled={isPending}
               placeholder="123"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
 
@@ -174,7 +174,7 @@ export default function OnboardingForm() {
               required
               disabled={isPending}
               placeholder="Centro"
-              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 text-sm transition-all duration-200"
+              className="mt-2 block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 text-sm transition-all duration-200"
             />
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function OnboardingForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="flex w-full justify-center items-center gap-2 rounded-xl bg-indigo-600 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
+          className="flex w-full justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 hover:from-primary-600 hover:to-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
         >
           {isPending ? (
             <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />

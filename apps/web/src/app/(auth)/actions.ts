@@ -120,7 +120,7 @@ export async function signInWithProvider(provider: 'google' | 'microsoft' | 'app
     console.error('NEXT_PUBLIC_SITE_URL is not set');
     throw new Error('Site URL not configurado');
   }
-  const redirectUrl = `${siteUrl}/api/auth/callback`;
+  const redirectUrl = `${siteUrl}/callback`;
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider,
     options: { redirectTo: redirectUrl },

@@ -49,7 +49,7 @@ export default async function VendorStorePage({ params }: VendorStorePageProps) 
             <p className="text-slate-500 text-sm">{errorMsg || 'Esta loja pode ter sido suspensa ou não existe.'}</p>
             <Link
               href="/"
-              className="inline-flex justify-center items-center rounded-xl bg-indigo-600 py-2.5 px-4 text-sm font-semibold text-white hover:bg-indigo-700 transition-all duration-200"
+              className="inline-flex justify-center items-center rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 py-2.5 px-4 text-sm font-semibold text-white hover:from-primary-600 hover:to-primary-800 transition-all duration-200"
             >
               Voltar para a Vitrine
             </Link>
@@ -71,7 +71,7 @@ export default async function VendorStorePage({ params }: VendorStorePageProps) 
       {/* Breadcrumb */}
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center gap-2 text-xs text-slate-500">
-          <Link href="/" className="hover:text-indigo-650 transition-colors">
+          <Link href="/" className="hover:text-primary-700 transition-colors">
             Home
           </Link>
           <ChevronRight className="h-3 w-3" />
@@ -85,17 +85,17 @@ export default async function VendorStorePage({ params }: VendorStorePageProps) 
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
         {/* Botão Voltar */}
-        <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-indigo-600 transition-colors">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-primary-600 transition-colors">
           <ArrowLeft className="h-4 w-4" /> Voltar para a Vitrine
         </Link>
 
         {/* Banner da Loja */}
-        <section className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white rounded-3xl overflow-hidden relative border border-white/10 shadow-lg p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
-          
+        <section className="bg-gradient-to-br from-slate-900 via-primary-950 to-slate-900 text-white rounded-3xl overflow-hidden relative border border-white/10 shadow-lg p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="absolute top-0 right-1/4 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl" />
+
           <div className="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left z-10">
             {/* Logo da Loja */}
-            <div className="h-16 w-16 sm:h-20 sm:w-20 bg-indigo-600 text-white font-black rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-white/20 select-none">
+            <div className="h-16 w-16 sm:h-20 sm:w-20 bg-gradient-to-br from-primary-400 to-primary-600 text-white font-black rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-white/20 select-none">
               {vendor.storeName.charAt(0).toUpperCase()}
             </div>
             <div className="space-y-1.5">

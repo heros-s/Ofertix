@@ -2,23 +2,19 @@
 
 import { useActionState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { login } from '../actions';
 import { SocialLoginButton } from '@/components/auth/SocialLoginButton';
-import { ShoppingBag, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(login, { error: null });
 
   return (
-    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-indigo-50/30 to-slate-100">
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-primary-50/30 to-slate-100">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link href="/" className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 transition-colors">
-          <div className="p-2 bg-indigo-50 rounded-xl border border-indigo-100">
-            <ShoppingBag className="h-8 w-8 text-indigo-600" />
-          </div>
-          <span className="text-3xl font-extrabold tracking-tight text-slate-950 font-sans">
-            Ofertix
-          </span>
+        <Link href="/" className="inline-flex items-center justify-center">
+          <Image src="/images/logo.svg" alt="Ofertix" width={180} height={42} priority />
         </Link>
         <h2 className="mt-6 text-2xl font-bold tracking-tight text-slate-900">
           Acesse sua conta
@@ -27,7 +23,7 @@ export default function LoginPage() {
           Ou{' '}
           <Link
             href="/register"
-            className="font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+            className="font-semibold text-primary-600 hover:text-primary-700 transition-colors"
           >
             crie uma nova conta grátis
           </Link>
@@ -63,7 +59,7 @@ export default function LoginPage() {
                   autoComplete="email"
                   required
                   disabled={isPending}
-                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
+                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
                   placeholder="exemplo@ofertix.com.br"
                 />
               </div>
@@ -84,7 +80,7 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   required
                   disabled={isPending}
-                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
+                  className="block w-full rounded-xl border-0 py-3 px-4 bg-white text-slate-900 placeholder-slate-400 shadow-sm ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
                   placeholder="••••••••"
                 />
               </div>
@@ -94,7 +90,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="flex w-full justify-center items-center gap-2 rounded-xl bg-indigo-600 py-3 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
+                className="flex w-full justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 py-3 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 hover:from-primary-600 hover:to-primary-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.98]"
               >
                 {isPending ? (
                   <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />

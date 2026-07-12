@@ -39,7 +39,7 @@ export default async function DashboardPage() {
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-indigo-50 rounded-lg border border-indigo-100 text-indigo-600">
+            <div className="p-2 bg-primary-50 rounded-lg border border-primary-100 text-primary-600">
               <Store className="h-5 w-5" />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900 font-sans">
@@ -51,7 +51,7 @@ export default async function DashboardPage() {
             {vendor && (
               <Link
                 href="/produtos"
-                className="text-sm font-semibold text-slate-600 hover:text-indigo-600 flex items-center gap-1.5 transition-colors mr-2"
+                className="text-sm font-semibold text-slate-600 hover:text-primary-600 flex items-center gap-1.5 transition-colors mr-2"
               >
                 <ShoppingBag className="h-4 w-4" /> Meus Produtos
               </Link>
@@ -125,7 +125,7 @@ export default async function DashboardPage() {
                   </p>
                   <p className="text-2xl font-bold text-slate-900">R$ 0,00</p>
                 </div>
-                <div className="p-3 bg-indigo-50 rounded-xl text-indigo-600">
+                <div className="p-3 bg-primary-50 rounded-xl text-primary-600">
                   <DollarSign className="h-6 w-6" />
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default async function DashboardPage() {
                   <Link href="/produtos" className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm shadow-sm transition-all duration-200">
                     Ver Meus Produtos
                   </Link>
-                  <Link href="/produtos/novo" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md transition-all duration-200">
+                  <Link href="/produtos/novo" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-semibold text-sm shadow-md transition-all duration-200">
                     <Plus className="h-4 w-4" /> Adicionar Produto
                   </Link>
                 </div>

@@ -81,17 +81,17 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="space-y-1.5">
           {/* Loja responsável */}
           <div className="flex items-center gap-1 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-            <Store className="h-3.5 w-3.5 text-indigo-500" />
+            <Store className="h-3.5 w-3.5 text-primary-500" />
             <Link
               href={`/loja/${product.vendor_id}`}
               onClick={(e) => e.stopPropagation()}
-              className="relative z-10 truncate hover:text-indigo-600 transition-colors"
+              className="relative z-10 truncate hover:text-primary-600 transition-colors"
             >
               {storeName}
             </Link>
           </div>
 
-          <h3 className="font-bold text-slate-900 leading-snug group-hover:text-indigo-650 transition-colors line-clamp-2">
+          <h3 className="font-bold text-slate-900 leading-snug group-hover:text-primary-700 transition-colors line-clamp-2">
             <Link href={`/produtos/${product.id}`} className="after:absolute after:inset-0 after:z-0">
               {product.name}
             </Link>
@@ -112,7 +112,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className={`relative z-10 p-3 rounded-xl shadow-sm transition-all duration-200 ${
               isOutOfStock
                 ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                : 'bg-indigo-600 hover:bg-indigo-700 text-white hover:shadow-indigo-600/20 hover:shadow-md active:scale-95'
+                : 'bg-gradient-to-r from-primary-500 to-primary-700 text-white hover:from-primary-600 hover:to-primary-800 hover:shadow-primary-600/20 hover:shadow-md active:scale-95'
             }`}
             title="Adicionar ao carrinho"
           >

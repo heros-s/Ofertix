@@ -85,7 +85,7 @@ export default function ProductDetailBuy({ product }: ProductDetailBuyProps) {
                 key={idx}
                 onClick={() => setSelectedImageIdx(idx)}
                 className={`relative w-20 aspect-square rounded-xl overflow-hidden bg-white border-2 flex-shrink-0 transition-all ${
-                  selectedImageIdx === idx ? 'border-indigo-650 shadow-sm scale-95' : 'border-slate-200 hover:border-slate-350'
+                  selectedImageIdx === idx ? 'border-primary-700 shadow-sm scale-95' : 'border-slate-200 hover:border-slate-350'
                 }`}
               >
                 <img src={url} alt={`Visualização ${idx + 1}`} className="w-full h-full object-cover" />
@@ -99,7 +99,7 @@ export default function ProductDetailBuy({ product }: ProductDetailBuyProps) {
       <div className="flex flex-col justify-between space-y-6">
         <div className="space-y-6">
           {/* Loja parceira */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 border border-indigo-100 rounded-full text-indigo-700 text-xs font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-50 border border-primary-100 rounded-full text-primary-700 text-xs font-semibold">
             <Store className="h-4 w-4" /> Vendedor: {storeName}
           </div>
 
@@ -121,7 +121,7 @@ export default function ProductDetailBuy({ product }: ProductDetailBuyProps) {
             ) : (
               <p className="text-sm text-slate-500 font-medium">
                 Estoque disponível:{' '}
-                <span className="text-indigo-600 font-bold">{product.stock} unidades</span>
+                <span className="text-primary-600 font-bold">{product.stock} unidades</span>
               </p>
             )}
           </div>
@@ -161,7 +161,7 @@ export default function ProductDetailBuy({ product }: ProductDetailBuyProps) {
                 className={`flex-1 inline-flex justify-center items-center gap-2 rounded-xl py-4 px-6 text-sm font-semibold text-white shadow-lg transition-all duration-200 ${
                   addedToCartSuccess
                     ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/10'
-                    : 'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-600/10 active:scale-98'
+                    : 'bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 shadow-primary-600/10 active:scale-98'
                 }`}
               >
                 {addedToCartSuccess ? (

@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import WebSocket from 'ws';
 
 @Injectable()
 export class SupabaseService {
@@ -23,6 +24,10 @@ export class SupabaseService {
       auth: {
         persistSession: false,
         autoRefreshToken: false,
+      },
+      // Node <22 has no native WebSocket global, then required by realtime-js.
+      realtime: {
+        transport: WebSocket as unknown as typeof globalThis.WebSocket,
       },
     });
     this.logger.log('Supabase Service Role client initialized successfully.');

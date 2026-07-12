@@ -46,7 +46,7 @@ export default function CartPage() {
       <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
         <Header />
         <main className="flex-1 flex items-center justify-center p-6">
-          <span className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent" />
+          <span className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-primary-600 border-t-transparent" />
         </main>
       </div>
     );
@@ -77,7 +77,7 @@ export default function CartPage() {
             </div>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-755 text-white font-semibold text-sm shadow-md transition-all duration-200"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-semibold text-sm shadow-md transition-all duration-200"
             >
               <ChevronLeft className="h-4 w-4" /> Voltar para a Vitrine
             </Link>
@@ -90,7 +90,7 @@ export default function CartPage() {
                 <div key={vendorId} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
                   {/* Nome da Loja Vendedora */}
                   <div className="flex items-center gap-1.5 border-b border-slate-100 pb-3">
-                    <Store className="h-5 w-5 text-indigo-600" />
+                    <Store className="h-5 w-5 text-primary-600" />
                     <h3 className="font-extrabold text-sm text-slate-900 uppercase tracking-wide">
                       Loja: {data.storeName}
                     </h3>
@@ -108,7 +108,7 @@ export default function CartPage() {
                             className="w-16 h-16 rounded-xl border border-slate-200 object-cover bg-slate-50"
                           />
                           <div>
-                            <Link href={`/produtos/${item.id}`} className="font-bold text-slate-900 hover:text-indigo-650 transition-colors line-clamp-2">
+                            <Link href={`/produtos/${item.id}`} className="font-bold text-slate-900 hover:text-primary-700 transition-colors line-clamp-2">
                               {item.name}
                             </Link>
                             <p className="text-xs text-slate-450 mt-1 font-semibold">
@@ -165,7 +165,7 @@ export default function CartPage() {
 
               <Link
                 href="/"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 hover:text-indigo-700 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary-600 hover:text-primary-700 transition-colors"
               >
                 <ChevronLeft className="h-4 w-4" /> Continuar Comprando
               </Link>
@@ -201,7 +201,7 @@ export default function CartPage() {
 
                 <button
                   onClick={handleCheckout}
-                  className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-755 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-indigo-600/10 hover:shadow-indigo-650/20 transition-all duration-200"
+                  className="w-full inline-flex justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3.5 px-4 text-sm font-semibold text-white shadow-lg shadow-primary-600/10 hover:shadow-primary-700/20 transition-all duration-200"
                 >
                   Fechar Compra <ArrowRight className="h-4.5 w-4.5" />
                 </button>
@@ -209,7 +209,7 @@ export default function CartPage() {
 
               {/* Informação sobre Split / Segurança */}
               <div className="bg-slate-900 text-white border border-slate-800 rounded-2xl p-6 shadow-sm flex items-start gap-4">
-                <div className="p-2 bg-indigo-600 rounded-xl text-white mt-0.5">
+                <div className="p-2 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl text-white mt-0.5">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <div className="space-y-1">
