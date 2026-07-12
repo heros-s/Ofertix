@@ -103,7 +103,7 @@ export async function signup(prevState: any, formData: FormData) {
 export async function logout() {
   try {
     const supabase = await createClient();
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: 'local' });
   } catch (err) {
     // Ignora erro no logout
   }

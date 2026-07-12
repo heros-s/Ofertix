@@ -87,7 +87,8 @@ function HeaderContent() {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await supabase.auth.signOut({ scope: 'local' });
+    router.push('/login');
     router.refresh();
   };
 

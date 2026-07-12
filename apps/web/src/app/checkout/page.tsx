@@ -22,7 +22,7 @@ interface Address {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cart, cartTotal, clearCart, isMounted } = useCart();
+  const { cart, cartTotal, clearCart, isMounted, addToCart } = useCart();
   const supabase = createClient();
 
   const [user, setUser] = useState<any>(null);
@@ -37,6 +37,9 @@ export default function CheckoutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [simulatedPixKey, setSimulatedPixKey] = useState('');
+  
+  // Recomendações de produtos (cross-selling)
+  const [recommendedProducts, setRecommendedProducts] = useState<any[]>([]);
 
   // Busca dados do usuário logado e seus endereços
   useEffect(() => {
@@ -76,6 +79,24 @@ export default function CheckoutPage() {
       router.push('/');
     }
   }, [cart, isMounted, orderSuccess, router]);
+
+  // Busca produtos recomendados (que não estejam no carrinho e que tenham estoque)
+  useEffect(() => {
+    if (!isMounted) return;
+    
+    fetch(`${backendUrl}/products?active=true`)
+      .then((res) => {
+        if (res.ok) return res.json();
+        throw new Error('Falha ao buscar produtos');
+      })
+      .then((data) => {
+        const cartIds = new Set(cart.map(item => item.id));
+        const filtered = data.filter((p: any) => !cartIds.has(p.id) && p.stock > 0);
+        // Exibe no máximo 4 produtos recomendados
+        setRecommendedProducts(filtered.slice(0, 4));
+      })
+      .catch((err) => console.error('Erro ao buscar produtos recomendados:', err));
+  }, [cart, isMounted, backendUrl]);
 
   const handlePlaceOrder = async () => {
     setIsSubmitting(true);
@@ -276,6 +297,77 @@ export default function CheckoutPage() {
                 </button>
               </div>
             </div>
+
+            {/* Produtos Recomendados (Cross-selling) */}
+            {recommendedProducts.length > 0 && (
+              <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4 animate-fade-in">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                  <h2 className="text-base font-bold text-slate-950 flex items-center gap-2">
+                    <span className="flex h-2.5 w-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+                    Aproveite para Adicionar
+                  </h2>
+                  <span className="text-[10px] text-indigo-600 font-bold uppercase tracking-wider bg-indigo-50 px-2.5 py-0.5 rounded-full">
+                    Recomendações
+                  </span>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {recommendedProducts.map((product) => {
+                    const price = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
+                    const hasImages = product.images && product.images.length > 0;
+                    const imageUrl = hasImages ? product.images[0] : '/placeholder-product.svg';
+                    const storeName = product.vendors?.store_name || 'Loja Parceira';
+                    
+                    return (
+                      <div 
+                        key={product.id} 
+                        className="flex gap-3 p-3 border border-slate-100 rounded-xl bg-slate-50/50 hover:bg-slate-50 hover:border-slate-200 transition-all duration-250 group"
+                      >
+                        <div className="relative h-16 w-16 rounded-lg bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200/60">
+                          <img 
+                            src={imageUrl} 
+                            alt={product.name} 
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                          />
+                        </div>
+                        <div className="flex-1 flex flex-col justify-between min-w-0">
+                          <div>
+                            <h4 className="font-bold text-xs text-slate-900 truncate leading-snug" title={product.name}>
+                              {product.name}
+                            </h4>
+                            <p className="text-[9px] font-semibold text-slate-400 truncate uppercase mt-0.5">
+                              {storeName}
+                            </p>
+                          </div>
+                          <div className="flex items-center justify-between gap-1.5 mt-2">
+                            <span className="font-extrabold text-xs text-slate-900">
+                              R$ {price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                addToCart({
+                                  id: product.id,
+                                  name: product.name,
+                                  price: price,
+                                  image: imageUrl,
+                                  vendorId: product.vendor_id,
+                                  storeName: storeName,
+                                  stock: product.stock,
+                                });
+                              }}
+                              className="inline-flex items-center justify-center gap-1 py-1.5 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[10px] shadow-sm hover:shadow hover:shadow-indigo-600/10 active:scale-95 transition-all"
+                            >
+                              Adicionar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Resumo da Compra & Fechar Pedido */}
