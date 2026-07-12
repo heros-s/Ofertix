@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const AUTOPLAY_DELAY_MS = 10000;
 
 interface Banner {
   image: string;
@@ -28,6 +30,13 @@ export default function HeroBannerCarousel() {
 
   const goPrev = () => setIndex((i) => (i === 0 ? banners.length - 1 : i - 1));
   const goNext = () => setIndex((i) => (i === banners.length - 1 ? 0 : i + 1));
+
+  useEffect(() => {
+    if (banners.length <= 1) return;
+
+    const timer = setTimeout(goNext, AUTOPLAY_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [index]);
 
   const banner = banners[index];
 
