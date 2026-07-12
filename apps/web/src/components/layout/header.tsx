@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCart } from '@/lib/cart-context';
 import { createClient } from '@/lib/supabase/client';
@@ -97,12 +98,7 @@ function HeaderContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="p-1.5 bg-indigo-600 rounded-xl text-white">
-            <ShoppingBag className="h-6 w-6" />
-          </div>
-          <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
-            Ofertix
-          </span>
+          <Image src="/images/logo.svg" alt="Ofertix" width={120} height={40} priority />
         </Link>
 
         {/* Barra de Pesquisa */}
@@ -235,14 +231,9 @@ export default function Header() {
     <Suspense fallback={
       <div className="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="p-1.5 bg-indigo-600 rounded-xl text-white">
-              <ShoppingBag className="h-6 w-6" />
-            </div>
-            <span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
-              Ofertix
-            </span>
-          </div>
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <Image src="/images/logo.svg" alt="Ofertix" width={120} height={40} priority />
+          </Link>
           <div className="h-8 bg-slate-800 rounded-xl w-32 animate-pulse" />
         </div>
       </div>
