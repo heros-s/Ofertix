@@ -39,7 +39,8 @@ export default function CheckoutPage() {
   // Status de finalização
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
-  const [simulatedPixKey, setSimulatedPixKey] = useState('');
+  const [orderError, setOrderError] = useState<string | null>(null);
+  const [invoiceUrl, setInvoiceUrl] = useState('');
   
   // Recomendações de produtos (cross-selling)
   const [recommendedProducts, setRecommendedProducts] = useState<any[]>([]);
@@ -170,18 +171,54 @@ export default function CheckoutPage() {
   }, [cart, isMounted, backendUrl]);
 
   const handlePlaceOrder = async () => {
+    if (!address) return;
+
     setIsSubmitting(true);
-    
-    // Simula a criação do pagamento/split no Asaas Sandbox
-    setTimeout(async () => {
-      if (paymentMethod === 'PIX') {
-        setSimulatedPixKey('00020126360014br.gov.bcb.pix0114ofertixcheckoutmvp2026520400005303986540615.005802BR5907Ofertix6009Sao Paulo62070503***6304ABCD');
+    setOrderError(null);
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        throw new Error('Sua sessão expirou. Faça login novamente para concluir a compra.');
       }
-      
-      setIsSubmitting(false);
+
+      // Cria o Pedido e a cobrança com split no Asaas em uma única chamada síncrona (ADR-0001)
+      const response = await fetch(`${backendUrl}/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({
+          items: cart.map((item) => ({ productId: item.id, quantity: item.quantity })),
+          paymentMethod,
+          shippingAddress: {
+            zipCode: address.zip_code,
+            street: address.street,
+            number: address.number,
+            complement: address.complement || undefined,
+            neighborhood: address.neighborhood,
+            city: address.city,
+            state: address.state,
+          },
+          shippingValue,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.message || 'Não foi possível concluir o pedido. Tente novamente.');
+      }
+
+      setInvoiceUrl(data.invoiceUrl);
       setOrderSuccess(true);
       clearCart(); // Esvazia o carrinho local do cliente
-    }, 1500);
+    } catch (err: any) {
+      setOrderError(err.message || 'Erro inesperado ao finalizar o pedido.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (loading || !isMounted) {
@@ -213,47 +250,31 @@ export default function CheckoutPage() {
             </p>
           </div>
 
-          {/* Pix QR Code simulation */}
-          {paymentMethod === 'PIX' && (
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-sm mx-auto space-y-4">
-              <h3 className="font-bold text-slate-900 text-sm flex items-center justify-center gap-1.5">
-                <QrCode className="h-4.5 w-4.5 text-primary-600" /> Pagamento via PIX (Simulação)
-              </h3>
-              <div className="bg-slate-50 p-4 rounded-xl border border-dashed border-slate-200 inline-block">
-                <img
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ofertix-sandbox-pix-split-mvp"
-                  alt="PIX QR Code"
-                  className="mx-auto h-36 w-36"
-                />
-              </div>
-              <div className="space-y-1.5 text-left text-xs">
-                <p className="font-semibold text-slate-400 uppercase tracking-wider text-[10px]">Chave Copia e Cola:</p>
-                <div className="bg-slate-50 border border-slate-200 p-2.5 rounded-lg break-all font-mono text-[10px] select-all text-slate-700">
-                  {simulatedPixKey}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {paymentMethod === 'BOLETO' && (
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-sm mx-auto space-y-4">
-              <h3 className="font-bold text-slate-900 text-sm flex items-center justify-center gap-1.5">
-                <Receipt className="h-4.5 w-4.5 text-primary-600" /> Cobrança em Boleto (Simulação)
-              </h3>
-              <p className="text-xs text-slate-500">O boleto em sandbox do Asaas foi emitido. Em produção, o cliente recebe o PDF para pagamento.</p>
-              <button className="w-full py-2.5 bg-primary-50 hover:bg-primary-100 text-primary-700 font-bold text-xs rounded-xl transition-all">
-                Visualizar Boleto Simulado
-              </button>
-            </div>
-          )}
-
-          {paymentMethod === 'CREDIT_CARD' && (
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-sm mx-auto space-y-4">
-              <p className="text-sm text-slate-600">
-                Pagamento pré-autorizado via cartão de crédito. O split de pagamentos do Asaas creditará os valores líquidos nas subcontas automaticamente.
-              </p>
-            </div>
-          )}
+          {/* Link para a fatura hospedada pela Asaas, onde o pagamento é efetivamente concluído */}
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-sm mx-auto space-y-4">
+            <h3 className="font-bold text-slate-900 text-sm flex items-center justify-center gap-1.5">
+              {paymentMethod === 'PIX' && <QrCode className="h-4.5 w-4.5 text-primary-600" />}
+              {paymentMethod === 'BOLETO' && <Receipt className="h-4.5 w-4.5 text-primary-600" />}
+              {paymentMethod === 'CREDIT_CARD' && <CreditCard className="h-4.5 w-4.5 text-primary-600" />}
+              Concluir Pagamento
+            </h3>
+            <p className="text-xs text-slate-500">
+              Sua cobrança foi criada com o split já configurado para os vendedores. Acesse a fatura da Asaas para finalizar o pagamento
+              {paymentMethod === 'PIX' && ' via PIX'}
+              {paymentMethod === 'BOLETO' && ' e emitir o boleto'}
+              {paymentMethod === 'CREDIT_CARD' && ' com seu cartão de crédito'}.
+            </p>
+            {invoiceUrl && (
+              <a
+                href={invoiceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full justify-center items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 py-3 px-4 text-sm font-semibold text-white shadow transition-all duration-200"
+              >
+                Ir para o Pagamento
+              </a>
+            )}
+          </div>
 
           <div className="pt-4">
             <Link
@@ -483,6 +504,12 @@ export default function CheckoutPage() {
                   </span>
                 </div>
               </div>
+
+              {orderError && (
+                <p className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 rounded-lg p-2.5">
+                  {orderError}
+                </p>
+              )}
 
               <button
                 onClick={handlePlaceOrder}
