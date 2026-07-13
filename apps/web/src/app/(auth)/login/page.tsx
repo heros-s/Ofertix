@@ -14,7 +14,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gradient-to-tr from-slate-100 via-primary-50/30 to-slate-100">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-flex items-center justify-center">
-          <Image src="/images/logo.svg" alt="Ofertix" width={180} height={42} priority />
+          <Image src="/images/logo_neg.svg" alt="Ofertix" width={180} height={42} priority />
         </Link>
         <h2 className="mt-6 text-2xl font-bold tracking-tight text-slate-900">
           Acesse sua conta
