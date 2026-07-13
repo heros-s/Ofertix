@@ -1,0 +1,7 @@
+# ADR-0001: scaffold mínimo do Supabase CLI, introduzido para versionar mudanças de
+# schema em supabase/migrations/ (primeira migration: payment_webhook_events).
+#
+# Rode `supabase link --project-ref <seu-project-ref>` para associar este projeto ao
+# projeto real no Supabase (o ref aparece na URL do dashboard) e `supabase db push`
+# para aplicar as migrations pendentes.
+project_id = "SEU_PROJECT_REF_AQUI"
