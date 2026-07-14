@@ -1,8 +1,9 @@
 import Header from '@/components/layout/header';
 import ProductCarousel from '@/components/product/product-carousel';
 import HeroBannerCarousel from '@/components/home/hero-banner-carousel';
+import CountdownTimer from '@/components/home/countdown-timer';
 import Link from 'next/link';
-import { ShoppingBag, SearchX } from 'lucide-react';
+import { ShoppingBag, SearchX, Timer } from 'lucide-react';
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
 
@@ -70,21 +71,25 @@ export default async function Home({ searchParams }: HomePageProps) {
       <main id="vitrine" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
         
         {/* Cabeçalho da Vitrine */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between border-b border-slate-200 pb-5 gap-4">
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 px-5 py-4 sm:px-6 shadow-sm">
+          <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-black text-white tracking-tight">
+            <Timer className="h-6 w-6 sm:h-7 sm:w-7 shrink-0" />
             {search && `Resultados para "${search}"`}
             {category && !search && `Categoria: ${activeCategoryName}`}
-            {!isFiltered && 'Nossos Produtos'}
+            {!isFiltered && 'OFERTAS DO DIA'}
           </h2>
 
-          {isFiltered && (
-            <Link
-              href="/"
-              className="text-xs font-bold uppercase tracking-wider text-primary-600 hover:text-primary-700 transition-colors border-b-2 border-primary-600 pb-0.5"
-            >
-              Limpar Filtros
-            </Link>
-          )}
+          <div className="flex items-center gap-4 shrink-0">
+            {isFiltered && (
+              <Link
+                href="/"
+                className="text-xs font-bold uppercase tracking-wider text-white/90 hover:text-white transition-colors border-b-2 border-white/70 pb-0.5"
+              >
+                Limpar Filtros
+              </Link>
+            )}
+            <CountdownTimer />
+          </div>
         </div>
 
         {fetchError && (
