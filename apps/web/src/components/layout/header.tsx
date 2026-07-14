@@ -98,7 +98,7 @@ function HeaderContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-          <Image src="/images/logo.svg" alt="Ofertix" width={120} height={40} priority />
+          <Image src="/images/logo.svg" alt="Ofertix" width={180} height={60} priority />
         </Link>
 
         {/* Barra de Pesquisa */}
@@ -232,7 +232,7 @@ export default function Header() {
       <div className="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <Image src="/images/logo.svg" alt="Ofertix" width={120} height={40} priority />
+            <Image src="/images/logo.svg" alt="Ofertix" width={180} height={60} priority />
           </Link>
           <div className="h-8 bg-slate-800 rounded-xl w-32 animate-pulse" />
         </div>
