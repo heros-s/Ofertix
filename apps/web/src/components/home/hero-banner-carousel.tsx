@@ -38,18 +38,31 @@ export default function HeroBannerCarousel() {
     return () => clearTimeout(timer);
   }, [index]);
 
-  const banner = banners[index];
-
   return (
-    <section className="py-6 sm:py-8">
-      <div className="relative">
-        <Link href={banner.href} className="block overflow-hidden">
-          <img
-            src={banner.image}
-            alt={banner.alt}
-            className="w-full h-auto object-cover"
-          />
-        </Link>
+    <section className="pb-6 sm:pb-8">
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            width: `${banners.length * 100}%`,
+            transform: `translateX(-${(index * 100) / banners.length}%)`,
+          }}
+        >
+          {banners.map((b, i) => (
+            <Link
+              key={i}
+              href={b.href}
+              className="block"
+              style={{ width: `${100 / banners.length}%` }}
+            >
+              <img
+                src={b.image}
+                alt={b.alt}
+                className="block w-full h-auto object-cover"
+              />
+            </Link>
+          ))}
+        </div>
 
         {banners.length > 1 && (
           <>
