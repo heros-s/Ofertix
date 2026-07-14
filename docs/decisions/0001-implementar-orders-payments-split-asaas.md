@@ -107,7 +107,7 @@ Herdados de `AGENTS.md` §8 (Fora do Escopo do MVP) e confirmados nesta ADR:
   - `apps/api/src/modules/asaas/asaas.module.ts`, `asaas.service.ts`, `asaas.service.spec.ts` — novo.
   - `apps/api/src/modules/orders/orders.module.ts`, `orders.controller.ts`, `orders.service.ts`, `orders.service.spec.ts`, `dto/create-order.dto.ts` — novo.
   - `apps/api/src/modules/payments/payments.module.ts`, `payments.controller.ts`, `payments.service.ts`, `payments.service.spec.ts`, `dto/asaas-webhook.dto.ts` — novo.
-  - `apps/api/src/modules/vendors/vendors.service.ts` — refatorado para injetar e usar `AsaasService`.
+  - `apps/api/src/modules/vendors/vendors.service.ts` — refatorado para injetar e utilizar `AsaasService`.
   - `apps/api/src/app.module.ts` — registrar `AsaasModule`, `OrdersModule`, `PaymentsModule`.
   - `apps/api/package.json` — adicionar `supabase` como devDependency.
   - `supabase/config.toml`, `supabase/migrations/20260712120000_create_payment_webhook_events.sql` — novo.
