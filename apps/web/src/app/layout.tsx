@@ -3,7 +3,7 @@ import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Offertix - Marketplace",
+  title: "Offertix | Descontos todos os diass",
   description: "Compre de múltiplos vendedores em um único carrinho com split de pagamento",
 };
 
