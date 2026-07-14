@@ -1,5 +1,5 @@
 import Header from '@/components/layout/header';
-import ProductCard from '@/components/product/product-card';
+import ProductCarousel from '@/components/product/product-carousel';
 import HeroBannerCarousel from '@/components/home/hero-banner-carousel';
 import Link from 'next/link';
 import { ShoppingBag, SearchX } from 'lucide-react';
@@ -69,21 +69,13 @@ export default async function Home({ searchParams }: HomePageProps) {
       {/* Seção da Vitrine */}
       <main id="vitrine" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
         
-        {/* Título da Vitrine / Resultados de Filtros */}
+        {/* Cabeçalho da Vitrine */}
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between border-b border-slate-200 pb-5 gap-4">
-          <div>
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-              {search && `Resultados para "${search}"`}
-              {category && !search && `Categoria: ${activeCategoryName}`}
-              {!isFiltered && 'Nossos Produtos'}
-            </h2>
-            <p className="text-slate-500 text-sm mt-1">
-              {isFiltered 
-                ? `Encontramos ${products.length} ${products.length === 1 ? 'produto correspondente' : 'produtos correspondentes'}.`
-                : 'Descubra os produtos incríveis publicados pelos nossos vendedores parceiros.'
-              }
-            </p>
-          </div>
+          <h2 className="text-2xl font-black text-slate-900 tracking-tight">
+            {search && `Resultados para "${search}"`}
+            {category && !search && `Categoria: ${activeCategoryName}`}
+            {!isFiltered && 'Nossos Produtos'}
+          </h2>
 
           {isFiltered && (
             <Link
@@ -123,11 +115,7 @@ export default async function Home({ searchParams }: HomePageProps) {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map((product: any) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <ProductCarousel products={products} />
         )}
       </main>
 
