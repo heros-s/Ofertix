@@ -84,23 +84,23 @@ export default function HeroBannerCarousel() {
             </button>
           </>
         )}
-      </div>
 
-      {banners.length > 1 && (
-        <div className="flex justify-center gap-1.5 mt-3">
-          {banners.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setIndex(i)}
-              aria-label={`Ir para banner ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-200 ${
-                i === index ? 'w-6 bg-primary-600' : 'w-1.5 bg-slate-300'
-              }`}
-            />
-          ))}
-        </div>
-      )}
+        {banners.length > 1 && (
+          <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/70">
+            {banners.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setIndex(i)}
+                aria-label={`Ir para banner ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-200 ${
+                  i === index ? 'w-6 bg-black' : 'w-1.5 bg-black/40'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
