@@ -15,6 +15,7 @@ interface Category {
 }
 
 const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
+const MAIN_CATEGORIES_COUNT = 6;
 
 function HeaderContent() {
   const router = useRouter();
@@ -25,6 +26,7 @@ function HeaderContent() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [searchValue, setSearchValue] = useState(searchParams.get('search') || '');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMoreCategoriesOpen, setIsMoreCategoriesOpen] = useState(false);
 
   const supabase = createClient();
 
@@ -205,21 +207,48 @@ function HeaderContent() {
 
       {/* Sub-header de Categorias Rápidas */}
       {categories.length > 0 && (
-        <div className="border-t border-slate-800/80 bg-slate-900/60 backdrop-blur-sm overflow-x-auto scrolling-touch">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center gap-6 text-xs text-slate-300 whitespace-nowrap">
-            <Link href="/" className="hover:text-white transition-colors font-semibold">
-              Todos os Produtos
-            </Link>
-            {categories.map((cat) => (
-              <Link
-                key={cat.id}
-                href={`/?category=${cat.id}`}
-                className="hover:text-white transition-colors"
-              >
-                {cat.name}
+        <div className="relative border-t border-slate-800/80 bg-slate-900/60 backdrop-blur-sm">
+          <div className="overflow-x-auto scrolling-touch">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center gap-6 text-xs text-slate-300 whitespace-nowrap">
+              <Link href="/" className="hover:text-white transition-colors font-semibold">
+                Todos os Produtos
               </Link>
-            ))}
+              {categories.slice(0, MAIN_CATEGORIES_COUNT).map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/?category=${cat.id}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {cat.name}
+                </Link>
+              ))}
+              {categories.length > MAIN_CATEGORIES_COUNT && (
+                <button
+                  onClick={() => setIsMoreCategoriesOpen((prev) => !prev)}
+                  className="flex items-center gap-1 hover:text-white transition-colors focus:outline-none flex-shrink-0"
+                  aria-expanded={isMoreCategoriesOpen}
+                >
+                  Mais categorias
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isMoreCategoriesOpen ? 'rotate-180' : ''}`} />
+                </button>
+              )}
+            </div>
           </div>
+
+          {isMoreCategoriesOpen && categories.length > MAIN_CATEGORIES_COUNT && (
+            <div className="absolute right-4 sm:right-6 lg:right-8 top-full mt-2 w-56 max-h-80 overflow-y-auto bg-slate-800 border border-slate-700 rounded-xl shadow-xl py-1 text-xs text-slate-200 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+              {categories.slice(MAIN_CATEGORIES_COUNT).map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/?category=${cat.id}`}
+                  onClick={() => setIsMoreCategoriesOpen(false)}
+                  className="block px-4 py-2 hover:bg-slate-700 hover:text-white transition-colors"
+                >
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </header>
