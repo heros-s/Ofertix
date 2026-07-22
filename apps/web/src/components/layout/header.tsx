@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCart } from '@/lib/cart-context';
 import { createClient } from '@/lib/supabase/client';
+import { logout } from '@/app/(auth)/actions';
 import { ShoppingBag, Search, User, LogOut, ChevronDown, Store } from 'lucide-react';
 
 interface Category {
@@ -88,9 +89,16 @@ function HeaderContent() {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut({ scope: 'local' });
-    router.push('/login');
-    router.refresh();
+    try {
+      // Best-effort: limpa a sessão no client e dispara o evento SIGNED_OUT
+      // imediatamente, para a UI reagir sem esperar o round-trip da action.
+      await supabase.auth.signOut({ scope: 'local' });
+    } catch (err) {
+      // ignore — a server action abaixo garante a remoção dos cookies de sessão
+    }
+    // Garante o logout mesmo se a chamada acima falhar silenciosamente (ex.: erro
+    // de rede impede o supabase-js de limpar os cookies locais).
+    await logout();
   };
 
   return (

@@ -2,6 +2,7 @@
 
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 /**
  * Realiza o login do usuário com e-mail e senha com tratamento robusto de erros.
@@ -107,6 +108,19 @@ export async function logout() {
   } catch (err) {
     // ignore error on logout
   }
+
+  // Garantia extra: o signOut do supabase-js só remove os cookies locais depois
+  // de confirmar a chamada ao endpoint remoto. Se essa chamada falhar por qualquer
+  // motivo (rede, rate limit, erro do servidor), a sessão local nunca é limpa e o
+  // usuário permanece autenticado. Por isso removemos os cookies de sessão aqui
+  // diretamente, independente do resultado do signOut acima.
+  const cookieStore = await cookies();
+  cookieStore.getAll().forEach(({ name }) => {
+    if (name.startsWith('sb-')) {
+      cookieStore.delete(name);
+    }
+  });
+
   redirect('/login');
 }
 
